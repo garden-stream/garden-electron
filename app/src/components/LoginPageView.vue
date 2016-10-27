@@ -1,4 +1,4 @@
-<style scoped lang="sass">
+<style lang="sass">
   h1
     margin-top: 0
   .login-page
@@ -19,6 +19,15 @@
   export default {
     components: {
       LoginForm
+    },
+    created () {
+      this.$on('login', this.doLogin)
+    },
+    methods: {
+      doLogin (data) {
+        console.log('do login', data)
+        this.$emit('login', data)
+      }
     },
     name: 'login-page'
   }

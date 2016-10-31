@@ -22,7 +22,7 @@
     <form v-show="!isLoggingIn" @submit.prevent="login">
       <header class="card-header">
         <p class="card-header-title">
-          Login
+          Sign up 
         </p>
       </header>
       <div class="card-content">
@@ -34,9 +34,13 @@
         <p class="control">
           <input class="input" v-model="password" type="password" placeholder="*******" required>
         </p>
+        <label class="label">Repeat Password</label>
+        <p class="control">
+          <input class="input" v-model="password2" type="password" placeholder="*******" required>
+        </p>
       </div>
       <footer class="card-footer">
-        <button type="submit" class="card-footer-item button is-primary">Sign In</button>
+        <button type="submit" class="card-footer-item button is-primary">Sign Up</button>
       </footer>
     </form>
   </div>
@@ -55,7 +59,7 @@
         username: '',
         password: '',
         password2: '',
-        isSigningUp: false,
+        isSigningUp: true,
         isLoggingIn: false
       }
     },

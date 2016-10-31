@@ -59,6 +59,7 @@
   "dependencies": {
     "bulma": "^0.2.3",
     "font-awesome": "^4.7.0",
+    "moment": "^2.15.2",
     "trianglify": "^1.0.1",
     "vuex": "^2.0.0"
   }

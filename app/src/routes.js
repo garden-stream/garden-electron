@@ -10,6 +10,16 @@ export default [
     component: require('components/HomeView'),
     children: [
       {
+        path: 'add',
+        component: require('components/HomeView/AddContent'),
+        name: 'add'
+      },
+      {
+        path: 'user/:user',
+        component: require('components/HomeView/UserProfile'),
+        name: 'user-profile'
+      },
+      {
         path: 'following',
         component: require('components/HomeView/Following'),
         name: 'following'

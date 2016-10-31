@@ -39,7 +39,7 @@
     watch: {
       token () {
         if (this.isAuthenticated) {
-          this.$router.push('/home')
+          this.$router.push('/home/following')
         }
       }
     },

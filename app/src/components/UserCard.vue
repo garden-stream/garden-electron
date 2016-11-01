@@ -3,7 +3,7 @@
     margin: 1em
     margin-top: 0em
     flex: 0
-    min-width: 150px
+    min-width: 175px
     transition: all 250ms ease-in-out
     &:hover
       box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 5px rgba(10, 10, 10, 0.1)
@@ -37,7 +37,7 @@
     <footer class="card-footer">
       <progress-spinner class='spinner-center' v-show="isLoading"></progress-spinner>
       <a v-if="!isFollowing && !isUser && canFollow" @click="followUser" class="card-footer-item">Follow</a>
-      <a v-if="isFollowing" class="card-footer-item is-disabled">Following</a>
+      <a v-if="isFollowing" class="card-footer-item button is-disabled">Following</a>
     </footer>
   </div>
 </template>

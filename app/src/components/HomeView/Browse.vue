@@ -3,10 +3,11 @@
     display: flex
     flex-flow: row wrap
     align-items: flex-start
-    justify-content: space-between
+    justify-content: flex-start
     width: 100%
-    .card:last-child
-      margin-right: auto
+    .card
+      min-width: 29vw
+      // margin-right: auto
 </style>
 <template>
   <section class='page'>

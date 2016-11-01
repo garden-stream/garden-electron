@@ -1,10 +1,16 @@
 <style scoped lang="sass">
   h1
     margin-top: 0
-  .page
+  .page--content
+    position: relative
+    z-index: 2
     display: flex
-    flex-flow: column wrap
+    flex-flow: column nowrap
+    height: 90vh
+    width: 100%
     align-items: center
+    overflow-y: auto
+    overflow-x: hidden
   .card
     transition: all 250ms ease-in-out
     &:hover
@@ -62,6 +68,6 @@
         })
       }
     },
-    name: 'following'
+    name: 'followers'
   }
 </script>

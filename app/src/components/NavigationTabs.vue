@@ -1,4 +1,7 @@
 <style lang="sass" scoped>
+  .tabs
+    z-index: 1
+    position: relative
 </style>
 
 <template>

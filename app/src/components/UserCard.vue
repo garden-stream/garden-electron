@@ -28,6 +28,7 @@
         </div>
         <div class="media-content">
           <p class="title is-5">{{user.username}}</p>
+          <p class="subtitle is-6">{{date}}</p>
         </div>
       </div>
       <div v-if="hasDescription" class="content">
@@ -44,6 +45,7 @@
 
 <script>
   import ProgressSpinner from './Spinner'
+  let moment = require('moment')
   export default {
     data: () => {
       return {
@@ -58,6 +60,9 @@
       },
       isUser () {
         return this.username === this.user.username
+      },
+      date () {
+        return moment(this.user.updatedAt).format('dddd, MMMM Do YYYY, h:mm:ss a')
       }
     },
     components: {

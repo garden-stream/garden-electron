@@ -29,6 +29,11 @@
         <br/>
         <small>{{date}}</small>
       </div>
+      <div v-if="post.contentType === 'webremix'" class="content">
+        <div v-html="post.content"></div>
+        <br/>
+        <small>{{date}}</small>
+      </div>
     </div>
   </div>
 </template>

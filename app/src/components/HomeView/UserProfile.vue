@@ -1,11 +1,18 @@
 <style scoped lang="sass">
   .user-profile
     flex: 1
+    width: 100%
+    height: 90vh
+    overflow-y: auto
+    overflow-x: hidden
+    display: flex
+    flex-flow: column nowrap
+    align-items: center
 </style>
 
 <template>
   <section class='user-profile'>
-    <user-card :user="userData" :hasDescription="true"></user-card>
+    <user-card :user="userData" :hasDescription="true" :isFollowing="isfollowing(user)" style="flex: 0"></user-card>
     <content-card v-for="post in posts" :post="post" :showAuthor="false"></content-card>
   </section>
 </template>
@@ -51,6 +58,12 @@
       this.fetchData()
     },
     methods: {
+      isfollowing (user) {
+        let results = this.$store.state.user.following.filter((_id) => {
+          return user._id === _id
+        })
+        return results.length
+      },
       fetchData () {
         this.$http.get('user/' + this.user.username)
         .then((res) => {

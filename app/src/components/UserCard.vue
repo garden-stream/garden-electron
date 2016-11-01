@@ -3,6 +3,9 @@
     margin: 1em
     margin-top: 0em
     flex: 1
+  .card-content .media
+    &:hover
+      cursor: pointer 
 </style>
 
 <template>
@@ -13,8 +16,8 @@
       </figure>
     </div>
     <div class="card-content">
-      <div class="media">
-        <div class="media-left">
+      <div class="media" @click="goToUser(user)">
+        <div class="media-left" >
           <figure class="image is-32x32">
             <img src="http://placehold.it/64x64" alt="Image">
           </figure>
@@ -28,18 +31,23 @@
       </div>
     </div>
     <footer class="card-footer">
-      <a v-if="!isFollowing && !isUser" @click="followUser" class="card-footer-item">Follow</a>
+      <progress-spinner class='spinner-center' v-show="isLoading"></progress-spinner>
+      <a v-if="!isFollowing && !isUser && canFollow" @click="followUser" class="card-footer-item">Follow</a>
+      <a v-if="isFollowing" class="card-footer-item is-disabled">Following</a>
     </footer>
   </div>
 </template>
 
 <script>
+  import ProgressSpinner from './Spinner'
   export default {
     data: () => {
       return {
+        canFollow: true,
+        isLoading: false
       }
     },
-    props: ['user', 'hasBigImage', 'hasDescription', 'isFollowing'],
+    props: ['user', 'hasBigImage', 'hasDescription', 'isFollowing', 'titleclick'],
     computed: {
       username () {
         return this.$store.state.user.username
@@ -49,19 +57,33 @@
       }
     },
     components: {
+      ProgressSpinner
     },
     methods: {
+      goToUser (user) {
+        console.log('going to user...', user.username)
+        this.$router.push({
+          name: 'user-profile',
+          params: { user: user }
+        })
+      },
       followUser () {
         console.log('following:', this.user.username)
+        this.canFollow = false
+        this.isLoading = true
         this.$http.post('user/' + this.user._id + '/follow', {
           token: this.$store.state.token
         })
         .then((res) => {
           console.log('res', res)
+          this.isLoading = false
           this.users = res.body
           console.log('this.users:', this.users)
+          this.canFollow = false
         }, (res) => {
           console.log('err', res)
+          this.isLoading = false
+          this.canFollow = true
         })
       }
     },

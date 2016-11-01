@@ -1,19 +1,20 @@
 <style scoped lang="sass">
   .page
     display: flex
-    flex-flow: row nowrap
+    flex-flow: row wrap
     align-items: flex-start
     justify-content: space-around
     width: 100%
 </style>
 <template>
   <section class='page'>
-    <user-card v-for="user in users" :user="user" :hasBigImage="false"></user-card>
+    <user-card v-for="user in users" :user="user" :hasBigImage="false" :isFollowing="isfollowing(user)"></user-card>
   </section>
 </template>
 
 <script>
   import UserCard from '../UserCard'
+  import ProgressSpinner from '../Spinner'
   export default {
     data: () => {
       return {
@@ -30,8 +31,17 @@
         console.log('err', res)
       })
     },
+    methods: {
+      isfollowing (user) {
+        let results = this.$store.state.user.following.filter((_id) => {
+          return user._id === _id
+        })
+        return results.length
+      }
+    },
     components: {
-      UserCard
+      UserCard,
+      ProgressSpinner
     },
     name: 'browse'
   }

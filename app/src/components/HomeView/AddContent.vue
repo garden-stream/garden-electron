@@ -19,7 +19,7 @@
     <transition name="toggle">
       <progress-spinner class='spinner-center' v-show="isSubmitting"></progress-spinner>
     </transition>
-    <form @submit.prevent="addPost">
+    <form v-show="!isSubmitting" @submit.prevent="addPost">
       <header class="card-header">
         <p class="card-header-title">
           Add Post

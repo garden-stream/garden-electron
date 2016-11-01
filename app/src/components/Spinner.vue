@@ -7,6 +7,8 @@
   position: relative
   margin-top: 50px
   margin-bottom: 50px
+  margin-left: auto
+  margin-right: auto
   display: inline-block
   
   &:after, &:before
@@ -18,8 +20,8 @@
     border-radius: 50%
   &:after
     position: absolute
-    top: -4px
-    left: -4px
+    top: 0px
+    left: 0px
     border: 4px solid transparent
     border-top-color: rgb(105,240,174)
     border-bottom-color: rgb(105,240,174)

@@ -81,7 +81,8 @@
           console.log('res', res)
           this.isLoading = false
           this.users = res.body
-          console.log('this.users:', this.users)
+          console.log('this.users1:', this.users)
+          this.$store.commit('setUser', res.body)
           this.canFollow = false
         }, (res) => {
           console.log('err', res)

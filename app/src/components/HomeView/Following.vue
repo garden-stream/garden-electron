@@ -14,7 +14,8 @@
 
 <template>
   <section class='page--content'>
-    <notification v-if="!users.length" notifType="is-info">
+    <progress-spinner v-if="isLoading" class='spinner-center' v-show="isLoggingIn"></progress-spinner>
+    <notification v-if="!users.length && !isLoading" notifType="is-info">
       <h1 slot="header">Heads up!</h1>
       <p>It looks like you don't follow any users yet!</p>
       <p>Head to the <router-link to="browse">Browse users</router-link> tab to find some to follow.</p>
@@ -26,10 +27,12 @@
 <script>
   import Notification from './Notification'
   import UserCard from '../UserCard'
+  import ProgressSpinner from '../Spinner'
   export default {
     data: () => {
       return {
-        users: []
+        users: [],
+        isLoading: true
       }
     },
     created () {
@@ -38,12 +41,15 @@
         // console.log('res', res)
         this.users = res.body
         console.log('this.users:', this.users)
+        this.isLoading = false
       }, (res) => {
         console.log('err', res)
+        this.isLoading = false
       })
     },
     components: {
       Notification,
+      ProgressSpinner,
       UserCard
     },
     methods: {

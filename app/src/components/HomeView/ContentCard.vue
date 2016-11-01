@@ -2,6 +2,24 @@
   .card
     margin: 1em
     margin-top: 0
+    opacity: 0
+    animation: webremix 600ms ease-in forwards
+  
+  .content
+   display: flex
+   flex-flow: column nowrap
+   justify-content: space-between
+  @keyframes webremix
+    0%
+      opacity: 0
+      transform: scale(0.3) rotateY(90deg)
+    60%
+      transform: scale(1.4)
+    90%
+      transform: scale(0.9)
+    100%
+      opacity: 1
+      
 </style>
 
 <template>
@@ -25,14 +43,14 @@
       </div>
 
       <div v-if="hasText" class="content">
+        <small>{{date}}</small>
+        <br/>
         {{post.content}}
-        <br/>
-        <small>{{date}}</small>
       </div>
-      <div v-if="post.contentType === 'webremix'" class="content">
-        <div v-html="post.content"></div>
-        <br/>
+      <div v-if="post.contentType === 'webremix'" class="content webremix">
         <small>{{date}}</small>
+        <br/>
+        <div v-html="post.content"></div>
       </div>
     </div>
   </div>

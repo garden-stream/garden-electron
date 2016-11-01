@@ -16,6 +16,7 @@
     align-items: space-around
     justify-content: space-around
     max-height: 300px
+    perspective: 1000px
     &:last-child
       margin-right: auto
   iframe
@@ -95,6 +96,7 @@
         .then((res) => {
           console.log('res', res)
           this.users = res.body
+          this.$store.commit('setUser', res.body)
           console.log('this.users:', this.users)
         }, (res) => {
           console.log('err', res)

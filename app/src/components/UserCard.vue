@@ -3,6 +3,9 @@
     margin: 1em
     margin-top: 0em
     flex: 1
+    transition: all 250ms ease-in-out
+    &:hover
+      box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 5px rgba(10, 10, 10, 0.1)
   .card-content .media
     &:hover
       cursor: pointer 

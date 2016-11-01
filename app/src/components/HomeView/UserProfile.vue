@@ -1,6 +1,5 @@
-<style scoped lang="sass">
-  .user-profile
-    flex: 1
+<style lang="sass">
+  .profile-container
     width: 100%
     height: 90vh
     overflow-y: auto
@@ -8,12 +7,27 @@
     display: flex
     flex-flow: column nowrap
     align-items: center
+  .user-profile
+    width: 100%
+    align-self: flex-start
+    flex: 1
+    display: flex
+    flex-flow: row wrap
+    align-items: space-around
+    justify-content: space-around
+    max-height: 300px
+    &:last-child
+      margin-right: auto
+  iframe
+    max-height: 200px
 </style>
 
 <template>
-  <section class='user-profile'>
+  <section class='profile-container'>
     <user-card :user="userData" :hasDescription="true" :isFollowing="isfollowing(user)" style="flex: 0"></user-card>
-    <content-card v-for="post in posts" :post="post" :showAuthor="false"></content-card>
+    <section class='user-profile'>
+      <content-card v-for="post in posts" :post="post" :showAuthor="false"></content-card>
+    </section>
   </section>
 </template>
 

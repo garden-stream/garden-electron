@@ -3,8 +3,10 @@
     display: flex
     flex-flow: row wrap
     align-items: flex-start
-    justify-content: space-around
+    justify-content: space-between
     width: 100%
+    .card:last-child
+      margin-right: auto
 </style>
 <template>
   <section class='page'>

@@ -20,7 +20,7 @@
       <p>It looks like you don't follow any users yet!</p>
       <p>Head to the <router-link to="browse">Browse users</router-link> tab to find some to follow.</p>
     </notification>
-    <a @click="goToUser(user)" v-else v-for="user in users"><user-card :user="user" :isFollowing="true"></user-card></a>
+    <a @click="goToUser(user)" v-else v-for="user in users"><user-card :user="user" :isFollowing="isfollowing(user)"></user-card></a>
   </section>
 </template>
 
@@ -59,6 +59,12 @@
           name: 'user-profile',
           params: { user: user }
         })
+      },
+      isfollowing (user) {
+        let results = this.$store.state.user.following.filter((_id) => {
+          return user._id === _id
+        })
+        return results.length
       }
     },
     name: 'following'

@@ -28,7 +28,7 @@
       <div class="card-content">
         <label class="label">Content</label>
         <p class="control">
-          <input class="input" v-model="content" type="text" placeholder="drop text or a link" required>
+          <input class="input" @keyup="logChange($event)" v-model="content" type="text" placeholder="drop text or a link" required>
         </p>
       </div>
       <footer class="card-footer">
@@ -65,11 +65,19 @@
     watch: {
       content () {
         this.isFailure = false
+        // console.log('change..', this.content)
       }
     },
     mounted () {
     },
     methods: {
+      logChange (key) {
+        if (key.keyCode === 50) {
+          console.log('got @ sign')
+        } else {
+          console.log('change log..', key)
+        }
+      },
       addPost () {
         this.isSubmitting = true
         this.isFailure = false

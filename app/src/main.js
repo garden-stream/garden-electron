@@ -15,7 +15,7 @@ Vue.use(Resource)
 Vue.use(Vuex)
 Vue.use(Router)
 Vue.config.debug = true
-Vue.http.options.root = '//garden-api.herokuapp.com/api'
+Vue.http.options.root = 'https://garden-api.herokuapp.com/api'
 
 const router = new Router({
   scrollBehavior: () => ({ y: 0 }),
@@ -24,7 +24,7 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
   // to and from are both route objects
-  console.log('going to:', to)
+  // console.log('going to:', to)
   next()
 })
 

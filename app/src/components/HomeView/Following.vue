@@ -20,7 +20,7 @@
 
 <template>
   <section class='page--content'>
-    <progress-spinner v-if="isLoading" class='spinner-center' v-show="isLoggingIn"></progress-spinner>
+    <progress-spinner class='spinner-center' v-show="isLoading"></progress-spinner>
     <notification v-if="!users.length && !isLoading" notifType="is-info">
       <h1 slot="header">Heads up!</h1>
       <p>It looks like you don't follow any users yet!</p>

@@ -26,6 +26,7 @@
 <template>
   <section class='profile-container'>
     <user-card :user="userData" :hasDescription="true" :isFollowing="isfollowing(user)" style="flex: 0"></user-card>
+    <progress-spinner class='spinner-center' v-show="isLoadingPosts"></progress-spinner>
     <section class='user-profile'>
       <content-card v-for="post in posts" :post="post" :showAuthor="false"></content-card>
     </section>
@@ -35,10 +36,14 @@
 <script>
   import UserCard from '../UserCard'
   import ContentCard from './ContentCard'
+  import ProgressSpinner from '../Spinner'
   export default {
     data: () => {
       return {
-        userData: {}
+        userData: {},
+        isLoadingUser: true,
+        isLoadingPosts: true,
+        posts: []
       }
     },
     computed: {
@@ -52,18 +57,14 @@
           return this.$route.params.user
         }
       },
-      posts () {
-        if (this.userData.posts) {
-          return this.userData.posts.reverse()
-        }
-      },
       isOwner () {
         return this.$route.params.user === 'me'
       }
     },
     components: {
       UserCard,
-      ContentCard
+      ContentCard,
+      ProgressSpinner
     },
     watch: {
       $route: 'fetchData'
@@ -80,12 +81,25 @@
         return results.length
       },
       fetchData () {
+        this.isLoadingUser = true
+        this.isLoadingPosts = true
         this.$http.get('user/' + this.user.username)
         .then((res) => {
           console.log('res', res.body)
           this.userData = res.body
+          this.isLoadingUser = false
         }, (res) => {
           console.log('err', res)
+          this.isLoadingUser = false
+        })
+        this.$http.get('user/' + this.user.username + '/posts')
+        .then((res) => {
+          console.log('res', res.body)
+          this.posts = res.body
+          this.isLoadingPosts = false
+        }, (res) => {
+          console.log('err', res)
+          this.isLoadingPosts = false
         })
       },
       followUser () {

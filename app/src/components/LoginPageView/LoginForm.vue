@@ -16,9 +16,7 @@
 </style>
 <template>
   <div class="card">
-    <transition name="toggle">
-      <progress-spinner class='spinner-center' v-show="isLoggingIn"></progress-spinner>
-    </transition>
+    <progress-spinner class='spinner-center' v-show="isLoggingIn"></progress-spinner>
     <form v-show="!isLoggingIn" @submit.prevent="login">
       <header class="card-header">
         <p class="card-header-title">

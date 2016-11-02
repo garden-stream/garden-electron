@@ -8,9 +8,12 @@
     .card
       min-width: 29vw
       // margin-right: auto
+  .spinner-center
+    align-self: center
 </style>
 <template>
   <section class='page'>
+    <progress-spinner class='spinner-center' v-show="isLoading"></progress-spinner>
     <user-card v-for="user in users" :user="user" :hasBigImage="false" :isFollowing="isfollowing(user)"></user-card>
   </section>
 </template>
@@ -21,7 +24,8 @@
   export default {
     data: () => {
       return {
-        users: []
+        users: [],
+        isLoading: true
       }
     },
     created () {
@@ -29,8 +33,10 @@
       .then((res) => {
         // console.log('res', res)
         this.users = res.body
+        this.isLoading = false
         console.log('this.users:', this.users)
       }, (res) => {
+        this.isLoading = false
         console.log('err', res)
       })
     },

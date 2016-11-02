@@ -16,9 +16,9 @@
 </style>
 <template>
   <div class="card">
-    <transition name="toggle">
-      <progress-spinner class='spinner-center' v-show="isSubmitting"></progress-spinner>
-    </transition>
+    <progress-spinner class='spinner-center' v-show="isSubmitting"></progress-spinner>
+    <progress-success class='spinner-center' v-show="isSuccessfull"></progress-success>
+    <progress-fail class='spinner-center' v-show="isFailure"></progress-fail>
     <form v-show="!isSubmitting" @submit.prevent="addPost">
       <header class="card-header">
         <p class="card-header-title">
@@ -40,18 +40,31 @@
 
 <script>
   const remix = require('webremix')
+  const sanitizer = require('sanitizer')
   import ProgressSpinner from '../Spinner'
+  import ProgressSuccess from '../Success'
+  import ProgressFail from '../Failure'
   // import Vue from 'vue'
   // let eventHub = new Vue()
   export default {
     components: {
-      ProgressSpinner
+      ProgressSpinner,
+      ProgressSuccess,
+      ProgressFail
     },
     data: () => {
       return {
         content: '',
+        originalContent: '',
         contentType: 'text',
-        isSubmitting: false
+        isSubmitting: false,
+        isSuccessfull: false,
+        isFailure: false
+      }
+    },
+    watch: {
+      content () {
+        this.isFailure = false
       }
     },
     mounted () {
@@ -59,7 +72,10 @@
     methods: {
       addPost () {
         this.isSubmitting = true
+        this.isFailure = false
         console.log('adding post')
+        this.originalContent = this.content
+        this.content = sanitizer.sanitize(this.content)
         remix.generate(this.content, {
           width: 250,
           height: 200
@@ -77,11 +93,14 @@
             }).then((res) => {
               console.log('res', res)
               this.isSubmitting = false
+              this.isSuccessfull = true
               console.log('added post!')
               this.content = ''
             }, (res) => {
               console.log('failed res', res)
               this.isSubmitting = false
+              this.isFailure = true
+              this.content = this.originalContent
             })
           }
         })

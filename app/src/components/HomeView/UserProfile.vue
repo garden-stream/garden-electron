@@ -27,7 +27,7 @@
 
 <template>
   <section class='profile-container'>
-    <user-card :user="userData" :hasDescription="true" :isFollowing="isfollowing(user)" style="flex: 0"></user-card>
+    <user-card v-if="!isLoadingPosts" :user="userData" :hasDescription="true" :isFollowing="isfollowing(user)" style="flex: 0"></user-card>
     <progress-spinner class='spinner-center' v-show="isLoadingPosts"></progress-spinner>
     <section class='user-profile'>
       <content-card v-for="post in posts" :post="post" :showAuthor="false"></content-card>

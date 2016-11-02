@@ -26,7 +26,7 @@
       <div class="card-content">
         <label class="label">Username</label>
         <p class="control">
-          <input class="input" v-model="username" type="text" placeholder="joeSmith" required>
+          <input class="input" @input='clearErrors' v-model="username" type="text" placeholder="joeSmith" required>
         </p>
         <label class="label">Password</label>
         <p class="control">
@@ -37,7 +37,10 @@
           <input class="input" v-model="password2" type="password" placeholder="*******" required>
         </p>
       </div>
-      <footer class="card-footer">
+      <div v-if='hasFailed' class="notification is-danger">
+        {{error}}
+      </div>
+      <footer v-else class="card-footer">
         <button type="submit" class="card-footer-item button is-primary">Sign Up</button>
       </footer>
     </form>
@@ -58,12 +61,18 @@
         password: '',
         password2: '',
         isSigningUp: true,
-        isLoggingIn: false
+        isLoggingIn: false,
+        hasFailed: false,
+        error: ''
       }
     },
     mounted () {
     },
     methods: {
+      clearErrors () {
+        this.hasFailed = false
+        this.error = ''
+      },
       login () {
         let action = 'login'
         if (this.isSigningUp) {
@@ -88,6 +97,8 @@
         }, (res) => {
           console.log('failed res', res)
           this.isLoggingIn = false
+          this.hasFailed = true
+          this.error = res.body.error
         })
       },
       toggleSignUp () {

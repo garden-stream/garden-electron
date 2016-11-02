@@ -1,4 +1,4 @@
-<style lang="sass">
+<style lang="sass" scoped>
   .profile-container
     width: 100%
     height: 90vh
@@ -19,6 +19,8 @@
     perspective: 1000px
     &:last-child
       margin-right: auto
+  .card
+    width: 500px
   iframe
     max-height: 200px
 </style>

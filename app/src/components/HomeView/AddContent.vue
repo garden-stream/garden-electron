@@ -44,13 +44,15 @@
   import ProgressSpinner from '../Spinner'
   import ProgressSuccess from '../Success'
   import ProgressFail from '../Failure'
+  import UserTag from '../UserTag'
   // import Vue from 'vue'
   // let eventHub = new Vue()
   export default {
     components: {
       ProgressSpinner,
       ProgressSuccess,
-      ProgressFail
+      ProgressFail,
+      UserTag
     },
     data: () => {
       return {
@@ -74,6 +76,8 @@
       logChange (key) {
         if (key.keyCode === 50) {
           console.log('got @ sign')
+          console.log('children:', this.$children)
+          // this.$addChild(UserTag)
         } else {
           console.log('change log..', key)
         }
@@ -85,7 +89,7 @@
         this.originalContent = this.content
         this.content = sanitizer.sanitize(this.content)
         remix.generate(this.content, {
-          width: 250,
+          width: '100%',
           height: 200
         }, (err, resp) => {
           if (err) {

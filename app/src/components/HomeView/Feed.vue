@@ -12,6 +12,7 @@
     overflow-y: auto
     overflow-x: hidden
   .card
+    width: 500px
     transition: all 250ms ease-in-out
     &:hover
       cursor: pointer

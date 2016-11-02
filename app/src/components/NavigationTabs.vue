@@ -8,6 +8,7 @@
   <div class="tabs">
       <ul class="is-left">
         <router-link tag="li" to="/home/user/me" active-class="is-active" exact><a>My Content</a></router-link>
+        <router-link tag="li" to="/home/feed" active-class="is-active" exact><a>Feed</a></router-link>
         <router-link tag="li" to="/home/add" active-class="is-active"><a>Add Post</a></router-link>
         <router-link tag="li" to="/home/following" active-class="is-active"><a>Following</a></router-link>
         <router-link tag="li" to="/home/followers" active-class="is-active"><a>Followers</a></router-link>

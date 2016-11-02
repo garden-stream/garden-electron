@@ -30,6 +30,11 @@ export default [
         name: 'followers'
       },
       {
+        path: 'feed',
+        component: require('components/HomeView/Feed'),
+        name: 'feed'
+      },
+      {
         path: 'browse',
         component: require('components/HomeView/Browse'),
         name: 'browse'

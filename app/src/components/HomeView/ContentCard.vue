@@ -37,8 +37,8 @@
           </figure>
         </div>
         <div class="media-content">
-          <p class="title is-5">John Smith</p>
-          <p class="subtitle is-6">@johnsmith</p>
+          <p class="title is-5">{{user.username}}</p>
+          <p class="subtitle is-6">{{user.username}}</p>
         </div>
       </div>
 
@@ -74,6 +74,6 @@
         return moment(this.post.createdAt).format('dddd, MMMM Do YYYY, h:mm:ss a')
       }
     },
-    props: ['showAuthor', 'post']
+    props: ['showAuthor', 'post', 'user']
   }
 </script>

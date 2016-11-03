@@ -2,6 +2,7 @@
   .tabs
     z-index: 1
     position: relative
+    margin-bottom: 0px
 </style>
 
 <template>

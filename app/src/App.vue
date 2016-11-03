@@ -11,6 +11,9 @@
   body {
     background-size: cover;
   }
+  section {
+    padding-top: 20px;
+  }
 
 </style>
 

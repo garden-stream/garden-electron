@@ -18,6 +18,8 @@
     color: white
     text-align: center
     text-shadow: 0px 0px 5px black
+  .isFollowing
+    background-color: #ececec
 </style>
 
 <template>
@@ -43,8 +45,8 @@
     </div>
     <footer class="card-footer">
       <progress-spinner class='spinner-center' v-show="isLoading"></progress-spinner>
-      <a v-if="!isFollowing && !isUser && canFollow" @click="followUser" class="card-footer-item">Follow</a>
-      <a v-if="isFollowing" class="card-footer-item button is-disabled">Following</a>
+      <a v-if="!isLoading && !isFollowing && !isUser && canFollow" @click="followUser" class="card-footer-item">Follow</a>
+      <a v-if="!isLoading && isFollowing" @click="unfollowUser" class="card-footer-item isFollowing">Unfollow</a>
     </footer>
   </div>
 </template>
@@ -74,7 +76,6 @@
         return this.user.username.slice(0, 2)
       },
       backgroundColor () {
-        console.log('color:', this.intToRGB(this.hashCode(this.user.username)))
         return 'background-color: #' + this.intToRGB(this.hashCode(this.user.username))
       }
     },
@@ -105,6 +106,25 @@
         this.$router.push({
           name: 'user-profile',
           params: { user: user }
+        })
+      },
+      unfollowUser () {
+        console.log('unfollowing:', this.user.username)
+        this.isLoading = true
+        this.$http.put('user/' + this.user._id + '/unfollow', {
+          token: this.$store.state.token,
+          user: this.user
+        })
+        .then((res) => {
+          console.log('res', res)
+          this.isLoading = false
+          this.users = res.body
+          console.log('this.users1:', this.users)
+          this.$store.commit('setUser', res.body)
+          this.canFollow = true
+        }, (res) => {
+          console.log('err', res)
+          this.isLoading = false
         })
       },
       followUser () {

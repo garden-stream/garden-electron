@@ -5,8 +5,8 @@
   background: rgb(192, 231, 192)
   border-radius: 50%
   position: relative
-  margin-top: 4px
-  margin-bottom: 4px
+  margin-top: 10px
+  margin-bottom: 10px
   margin-left: auto
   margin-right: auto
   display: inline-block

@@ -80,7 +80,6 @@
         return this.user.username.slice(0, 2)
       },
       backgroundColor () {
-        console.log('color:', this.intToRGB(this.hashCode(this.user.username)))
         return 'background-color: #' + this.intToRGB(this.hashCode(this.user.username))
       }
     },

@@ -4,12 +4,20 @@
     margin-top: 0
     opacity: 1
     perspective: 1000px
-    animation: webremix 600ms ease-in forwards
+    animation: webremix 400ms ease-in forwards
   .content
    display: flex
    flex-flow: column nowrap
    justify-content: space-between
    
+  .avatar
+    padding: .5em
+    width: 32px
+    height: 32px
+    border-radius: 50%
+    color: white
+    text-align: center
+    text-shadow: 0px 0px 5px black
   @keyframes webremix
     0%
       opacity: 0
@@ -28,10 +36,8 @@
     </div>
     <div class="card-content">
       <div class="media" v-if="showAuthor">
-        <div class="media-left">
-          <figure class="image is-32x32">
-            <img src="http://placehold.it/64x64" alt="Image">
-          </figure>
+        <div class="media-left avatar" :style="backgroundColor">
+          <span class="user-avatar">{{firstLetter}}</span>
         </div>
         <div class="media-content">
           <p class="title is-5">{{user.username}}</p>
@@ -69,6 +75,29 @@
       },
       date () {
         return moment(this.post.createdAt).format('dddd, MMMM Do YYYY, h:mm:ss a')
+      },
+      firstLetter () {
+        return this.user.username.slice(0, 2)
+      },
+      backgroundColor () {
+        console.log('color:', this.intToRGB(this.hashCode(this.user.username)))
+        return 'background-color: #' + this.intToRGB(this.hashCode(this.user.username))
+      }
+    },
+    methods: {
+      hashCode (str) { // java String#hashCode
+        let hash = 0
+        for (var i = 0; i < str.length; i++) {
+          hash = str.charCodeAt(i) + ((hash << 5) - hash)
+        }
+        return hash
+      },
+      intToRGB (i) {
+        let c = (i & 0x00FFFFFF)
+          .toString(16)
+          .toUpperCase()
+
+        return '00000'.substring(0, 6 - c.length) + c
       }
     },
     props: ['showAuthor', 'post', 'user']

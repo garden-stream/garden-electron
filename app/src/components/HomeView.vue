@@ -5,15 +5,17 @@
     display: flex
     flex-flow: column nowrap
     align-items: center
+    height: 100%
   .tabs
     width: 100%
     background-color: white
+  .top-pad
 </style>
 
 <template>
   <div class='page'>
     <navigation-tabs></navigation-tabs>
-    <router-view></router-view>
+    <router-view class='top-pad'></router-view>
   </div>
 </template>
 

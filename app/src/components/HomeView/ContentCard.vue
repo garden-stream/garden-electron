@@ -2,21 +2,18 @@
   .card
     margin: 1em
     margin-top: 0
-    opacity: 0
+    opacity: 1
+    perspective: 1000px
     animation: webremix 600ms ease-in forwards
-  
   .content
    display: flex
    flex-flow: column nowrap
    justify-content: space-between
+   
   @keyframes webremix
     0%
       opacity: 0
-      transform: scale(0.3) rotateY(90deg)
-    60%
-      transform: scale(1.4)
-    90%
-      transform: scale(0.9)
+      transform: scale(0.3) rotateX(-90deg)
     100%
       opacity: 1
       

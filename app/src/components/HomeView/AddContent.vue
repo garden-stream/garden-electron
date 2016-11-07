@@ -8,6 +8,7 @@
 .toggle-enter, .toggle-leave-active 
   opacity: 0
 .card
+  margin-top: 1em
   display: flex
   flex-flow: column nowrap
 .card-footer-item

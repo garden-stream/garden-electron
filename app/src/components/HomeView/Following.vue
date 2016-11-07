@@ -6,7 +6,7 @@
     z-index: 2
     display: flex
     flex-flow: column nowrap
-    height: 90vh
+    height: 100%
     width: 100%
     align-items: center
     overflow-y: auto

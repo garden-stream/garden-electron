@@ -14,11 +14,15 @@
   section {
     padding-top: 20px;
   }
+  .fill {
+    height: 100%;
+    width: 100%;
+  }
 
 </style>
 
 <template>
-  <div >
+  <div class='fill'>
     <router-view></router-view>
   </div>
 </template>
@@ -42,7 +46,7 @@
     watch: {
       token () {
         if (this.isAuthenticated) {
-          this.$router.push('/home/following')
+          this.$router.push('/home/feed')
         }
       }
     },
